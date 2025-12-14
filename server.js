@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
 import dotenv from "dotenv";
+import { proxyRequest } from "./proxy.js";
 
 dotenv.config();
 
@@ -11,9 +11,12 @@ app.use(cors());
 app.use(express.json());
 
 // TEST ROUTE
-app.get("/ping", (req, res) => {
-  res.json({ message: "pong" });
-});
+// app.get("/ping", (req, res) => {
+//   res.json({ message: "pong" });
+// });
+
+app.post("/proxy", proxyRequest);
+
 
 // Start server
 app.listen(5000, () => {
