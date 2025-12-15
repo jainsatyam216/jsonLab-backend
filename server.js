@@ -15,6 +15,11 @@ app.use(express.json());
 //   res.json({ message: "pong" });
 // });
 
+app.get("/", (req, res) => {
+  res.send("JsonLab Backend is running 🚀");
+});
+
+
 app.post("/proxy", proxyRequest);
 
 
