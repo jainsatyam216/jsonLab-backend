@@ -22,6 +22,20 @@ app.get("/", (req, res) => {
 
 app.post("/proxy", proxyRequest);
 
+app.get("/history", async (req, res) => {
+  const snapshot = await db
+    .collection("history")
+    .orderBy("created_at", "desc")
+    .limit(20)
+    .get();
+
+  const history = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  res.json(history);
+});
 
 // Start server
 app.listen(5000, () => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { saveHistory } from "./history.js";
 
 export const proxyRequest = async (req, res) => {
   try {
@@ -20,6 +21,15 @@ export const proxyRequest = async (req, res) => {
     });
 
     const timeTaken = Date.now() - start;
+
+    await saveHistory({
+      user_id: "anonymous",
+      url,
+      method,
+      headers,
+      params,
+      body,
+    });
 
     return res.json({
       status: response.status,
