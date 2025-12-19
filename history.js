@@ -4,17 +4,17 @@ export const saveHistory = async ({
   user_id,
   url,
   method,
-  headers,
-  params,
-  body,
+  headers = {},
+  params = {},
+  body = {},
 }) => {
   await db.collection("history").add({
     user_id,
     url,
     method,
-    headers,
-    params,
-    body,
+    headers: headers || {},
+    params: params || {},
+    body: body || {},
     created_at: new Date(),
   });
 };

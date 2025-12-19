@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { proxyRequest } from "./proxy.js";
+import { db } from "./firebase.js";
+
 
 dotenv.config();
 
